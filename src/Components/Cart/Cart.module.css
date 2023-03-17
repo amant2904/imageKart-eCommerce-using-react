@@ -1,0 +1,17 @@
+.mycart{
+    position: absolute;
+    top: 80px;
+    right: 0px;
+    min-height: 100vh;
+    max-width: 25vw;
+    border: 2px solid rgb(250, 144, 112);
+    padding: 20px;
+    background-color: #edf7ff;
+}
+.closeBtn{
+    float: right;
+    font-size: 22px;
+}
+.cartHeading{
+    border-bottom: 2px solid black;
+}
