@@ -1,7 +1,10 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Button, Container, Navbar } from 'react-bootstrap'
+import CartContext from '../Store/cart-context'
 
 export default function NavBar(props) {
+    const cartCtx = useContext(CartContext);
+
     return (
         <Navbar bg="dark" variant="dark">
             <Container>
@@ -10,15 +13,9 @@ export default function NavBar(props) {
                     border: "2px solid rgb(113 243 245)",
                     backgroundColor: "transparent",
                     fontWeight: "bolder",
-                    padding: "2px 0px 2px 8px",
+                    padding: "2px 8px 2px",
                     width: "fit-content"
-                }}>Cart <span style={{
-                    position: "relative",
-                    top: "-13px",
-                    left: "16px",
-                    fontSize: "18px",
-                    color: "rgb(113 243 245)",
-                }}>0</span></Button>
+                }}>Cart <span style={{ color: "rgb(113 243 245)", fontWeight: "bolder" }}>{cartCtx.totalQuantity}</span></Button>
             </Container>
         </Navbar>
     )

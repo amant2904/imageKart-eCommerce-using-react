@@ -4,7 +4,7 @@ import { Container, Row } from 'react-bootstrap'
 
 export default function AllProducts() {
     const productsList = [{
-
+        id: "p1",
         title: 'Colors',
 
         price: 100,
@@ -14,7 +14,7 @@ export default function AllProducts() {
     },
 
     {
-
+        id: "p2",
         title: 'Black and white Colors',
 
         price: 50,
@@ -24,7 +24,7 @@ export default function AllProducts() {
     },
 
     {
-
+        id: "p3",
         title: 'Yellow and Black Colors',
 
         price: 70,
@@ -34,7 +34,7 @@ export default function AllProducts() {
     },
 
     {
-
+        id: "p4",
         title: 'Blue Color',
 
         price: 100,
@@ -48,7 +48,7 @@ export default function AllProducts() {
             <h2 className='text-center text-primary font-weight-bold'>PRODUCTS</h2>
             <Row lg={2} className="justify-content-between">
                 {productsList.map((product) => {
-                    return <Product title={product.title} imageURL={product.imageUrl} price={product.price} />
+                    return <Product key={product.id} id={product.id} title={product.title} imageURL={product.imageUrl} price={product.price} />
                 })}
             </Row>
         </Container>

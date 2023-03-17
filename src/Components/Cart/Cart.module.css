@@ -3,7 +3,7 @@
     top: 80px;
     right: 0px;
     min-height: 100vh;
-    max-width: 25vw;
+    max-width: 25vw !important;
     border: 2px solid rgb(250, 144, 112);
     padding: 20px;
     background-color: #edf7ff;
