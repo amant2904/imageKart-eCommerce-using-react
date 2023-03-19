@@ -1,9 +1,13 @@
 import React from 'react'
 import { Col, Container, Row } from 'react-bootstrap'
+import classes from "./About.module.css"
 
 export default function About() {
     return (
         <React.Fragment>
+            <Container fluid className='bg-secondary d-flex flex-column align-items-center'>
+                <h1 className={`text-light text-center ${classes.header_text}`}>The Generics</h1>
+            </Container>
             <h1 className='text-center my-4' style={{ color: "aqua" }}>ABOUT</h1>
             <Container className='border border-5 p-4'>
                 <Row className='my-2'>

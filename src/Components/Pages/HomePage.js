@@ -56,9 +56,6 @@ export default function HomePage() {
                     })}
                 </ul>
             </Container>
-            <Container fluid className="bg-info my-0">
-                <h1 className={`my-0 ${classes.homeFooter}`}>The Generics</h1>
-            </Container>
         </React.Fragment>
     )
 }
