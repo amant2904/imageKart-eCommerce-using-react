@@ -8,7 +8,7 @@ export default function NavBar(props) {
     const cartCtx = useContext(CartContext);
 
     return (
-        <Navbar bg="dark" variant="dark">
+        <Navbar bg="dark" variant="dark" className='position-sticky top-0'>
             <Container>
                 <Navbar.Brand href="/">ImageKart</Navbar.Brand>
                 <Nav>

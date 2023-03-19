@@ -13,15 +13,16 @@ export default function CartItem(props) {
 
     return (
         <Row className={`mb-2 py-3 ${classes.cartItem}`}>
-            <Col md={5} className="d-flex">
-                <img src={props.imageUrl} alt="product" className={classes.prdImg} />
-                <p className='my-0 mx-2' style={{ overflow: "hidden", height: "50px" }}>{props.title}</p>
+            <Col md={5} className="d-flex align-items-center">
+                <img src={props.imageUrl} alt="product" className={`${classes.prdImg}`} />
+                <p className='my-0 mx-2' style={{ overflow: "hidden" }}>{props.title}</p>
             </Col>
-            <Col md={2}>
-                <p>Rs.{props.price}</p>
+            <Col md={2} className="d-flex align-items-center justify-content-center">
+                <p className='my-0'>Rs.{props.price}</p>
             </Col>
-            <Col md={5}>
-                <span className='p-2'>x {props.quantity}</span><Button variant="warning" className='btn-sm' onClick={removeFromCart_handler}>Remove</Button>
+            <Col md={5} className="d-flex align-items-center justify-content-end">
+                <span className='px-2 py-1 mx-2 border border-2 border-warning'>x {props.quantity}</span>
+                <Button variant="warning" className='btn-sm' onClick={removeFromCart_handler}>Remove</Button>
             </Col>
             <p hidden>{props.identity}</p>
         </Row>

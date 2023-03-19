@@ -13,13 +13,13 @@ const CartBox = (props) => {
     }, 0)
 
     return (
-        <Container className={classes.mycart}>
+        <Container className={`${classes.mycart} position-fixed`}>
             <CloseButton onClick={props.closeCart} className={classes.closeBtn} />
             <h2 className='text-center'>Cart</h2>
-            <Row className='my-4'>
-                <Col md={5} className="text-center"><span className={`pb-2 ${classes.cartHeading}`}>ITEMS</span></Col>
-                <Col md={2} className="text-center"><span className={`pb-2 ${classes.cartHeading}`}>PRICE</span></Col>
-                <Col md={5} className="text-center"><span className={`pb-2 ${classes.cartHeading}`}>QUANTITY</span></Col>
+            <Row className='my-4 align-items-center'>
+                <Col md={5} className="text-center"><span className="pb-2 border-bottom border-2 border-dark d-flex justify-content-center align-items-center">ITEMS</span></Col>
+                <Col md={2} className="text-center"><span className="pb-2 border-bottom border-2 border-dark d-flex justify-content-center align-items-center">PRICE</span></Col>
+                <Col md={5} className="text-center"><span className="pb-2 border-bottom border-2 border-dark d-flex justify-content-center align-items-center">QUANTITY</span></Col>
             </Row>
             {cartCtx.items.map((item) => {
                 return <CartItem key={item.identity} title={item.title} imageUrl={item.imageUrl} price={item.price} quantity={item.quantity} identity={item.identity} />

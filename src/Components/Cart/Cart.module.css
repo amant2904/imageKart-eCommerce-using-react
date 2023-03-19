@@ -2,16 +2,14 @@
     position: absolute;
     top: 80px;
     right: 0px;
-    min-height: 100vh;
-    max-width: 25vw !important;
+    min-height: 88vh;
     border: 2px solid rgb(250, 144, 112);
     padding: 20px;
     background-color: #edf7ff;
+    max-width: 30vw !important;
+    overflow: scroll;
 }
 .closeBtn{
     float: right;
     font-size: 22px;
-}
-.cartHeading{
-    border-bottom: 2px solid black;
 }
