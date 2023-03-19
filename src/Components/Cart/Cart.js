@@ -28,7 +28,7 @@ const CartBox = (props) => {
                 <h4 className='text-end'>Total = <span>Rs. {totaAmount.toFixed(2)}</span></h4>
             </Row>
             <Row className='justify-content-center my-4'>
-                <Button className="w-auto">Purchase</Button>
+                <Button className="w-auto btn-lg border border-2 border-dark text-light" variant='info'>Purchase</Button>
             </Row>
         </Container>
     )

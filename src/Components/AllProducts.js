@@ -1,8 +1,8 @@
 import React from 'react'
 import Product from './Product'
-import { Container, Row } from 'react-bootstrap'
+import { Button, Container, Row } from 'react-bootstrap'
 
-export default function AllProducts() {
+export default function AllProducts(props) {
     const productsList = [{
         id: "p1",
         title: 'Colors',
@@ -45,11 +45,14 @@ export default function AllProducts() {
 
     return (
         <Container style={{ width: "50%" }} className="mt-3">
-            <h2 className='text-center text-primary font-weight-bold'>PRODUCTS</h2>
+            <h1 className='text-center text-info font-weight-bold'>PRODUCTS</h1>
             <Row lg={2} className="justify-content-between">
                 {productsList.map((product) => {
                     return <Product key={product.id} id={product.id} title={product.title} imageURL={product.imageUrl} price={product.price} />
                 })}
+            </Row>
+            <Row className='justify-content-center my-2'>
+                <Button onClick={props.showCart} variant='info' className='border border-3 border-dark font-weight-bold w-auto'>See Cart</Button>
             </Row>
         </Container>
     )

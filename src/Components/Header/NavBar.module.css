@@ -9,6 +9,20 @@
     color: aqua;
 }
 
-.activeNavlink{
+.cartBtn{
+    border: none !important;
+    background-color: transparent !important;
+    font-weight: "bolder";
+    width: "fit-content"
+}
+.cartBtn_text{
+    padding: 4px 14px;
+    border: 2px solid rgb(113 243 245) !important;
+    border-radius: 8px;
+}
+.cartBtn_num{
     color: aqua;
+    font-weight: bolder;
+    font-size: 21px;
+    margin: 0px 4px;
 }
