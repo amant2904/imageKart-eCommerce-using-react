@@ -13,6 +13,9 @@ export default function NavBar(props) {
                 <Navbar.Brand href="/">ImageKart</Navbar.Brand>
                 <Nav>
                     <Nav.Link>
+                        <Link to="/home" className={classes.navLink}>Home</Link>
+                    </Nav.Link>
+                    <Nav.Link>
                         <Link to="/" className={classes.navLink}>Store</Link>
                     </Nav.Link>
                     <Nav.Link>

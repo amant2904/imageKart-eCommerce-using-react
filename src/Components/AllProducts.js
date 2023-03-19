@@ -15,7 +15,7 @@ export default function AllProducts(props) {
 
     {
         id: "p2",
-        title: 'Black and white Colors lkkljlkjkln nlj nljlkj kljkl kljlk',
+        title: 'Black and white Colors',
 
         price: 50,
 

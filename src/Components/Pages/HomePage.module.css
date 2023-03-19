@@ -1,0 +1,39 @@
+.header_text{
+    font-size: 100px;
+    padding: 30px 0px;
+    margin: 0px;
+}
+.heroBtn{
+    margin: 0px auto;
+    /* width: fit-content; */
+    padding: 11px 18px;
+    color: aqua;
+    border: 1px solid aqua;
+    background-color: transparent;
+    cursor: pointer;
+    font-weight: bolder;
+    font-size: 23px;
+}
+.playBtn{
+    padding: 22px;
+    border-radius: 100px;
+    border: 2px solid aqua;
+    /* color: #090909; */
+    background-color: transparent;
+    margin: 18px 0px 40px;
+}
+.tourList{
+    list-style: none;
+    margin: 5px 0px;
+    border-bottom: 1px solid black;
+    padding: 10px;
+}
+.tourList span{
+    margin-right: 78px;
+}
+
+.homeFooter{
+    font-size: 70px;
+    padding: 30px 120px;
+    color: white;
+}
