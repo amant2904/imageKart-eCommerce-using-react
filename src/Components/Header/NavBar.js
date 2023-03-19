@@ -2,6 +2,7 @@ import React, { useContext } from 'react'
 import { Button, Container, Navbar, Nav } from 'react-bootstrap'
 import CartContext from '../Store/cart-context'
 import classes from "./NavBar.module.css"
+import { Link } from 'react-router-dom'
 
 export default function NavBar(props) {
     const cartCtx = useContext(CartContext);
@@ -11,8 +12,12 @@ export default function NavBar(props) {
             <Container>
                 <Navbar.Brand href="/">ImageKart</Navbar.Brand>
                 <Nav>
-                    <Nav.Link to="/about" className={classes.navLink}>About</Nav.Link>
-                    <Nav.Link to="/store" className={classes.navLink}>Store</Nav.Link>
+                    <Nav.Link>
+                        <Link to="/" className={classes.navLink}>Store</Link>
+                    </Nav.Link>
+                    <Nav.Link>
+                        <Link to="/about" className={classes.navLink}>About</Link>
+                    </Nav.Link>
                 </Nav>
                 <Button onClick={props.showCart} className={classes.cartBtn}>
                     <span className={classes.cartBtn_text}>Cart</span>

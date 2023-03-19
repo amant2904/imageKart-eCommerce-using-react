@@ -4,6 +4,8 @@ import AllProducts from './Components/AllProducts';
 import Header from './Components/Header/Header';
 import Cart from './Components/Cart/Cart';
 import CartProvider from './Components/Store/CartProvider';
+import About from "./Components/Pages/About"
+import { Routes, Route } from 'react-router-dom';
 
 
 function App() {
@@ -24,7 +26,10 @@ function App() {
     <CartProvider>
       {showCart && <Cart closeCart={hideCart_handler} />}
       <Header showCart={showCart_handler} />
-      <AllProducts showCart={showCart_handler} />
+      <Routes>
+        <Route path='/' element={<AllProducts showCart={showCart_handler} />} />
+        <Route path='/about' element={<About />} />
+      </Routes>
     </CartProvider>
   );
 }
