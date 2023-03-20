@@ -9,6 +9,7 @@ export default function Movies() {
 
     const fetchAPI_handler = async () => {
         try {
+            setMovies([])
             setIsLoading(true)
             const res = await fetch("https://swapi.dev/api/films");
             const data = await res.json();
@@ -33,6 +34,9 @@ export default function Movies() {
             <Container className={`${classes.btnCont} p-4 my-4 d-flex align-items-center justify-content-center`}>
                 <Button className={`${classes.fetchBtn}`} onClick={fetchAPI_handler}>Fetch Movies</Button>
             </Container>
+            {isLoading && <Container className={`d-flex align-items-center justify-content-center ${classes.loader}`}>
+                <img src={loader} alt="loader" />
+            </Container>}
             {movies.map((movie) => {
                 return <Container key={movie.id} className={classes.movieCont}>
                     <Row className={classes.movieTitle}>
@@ -46,9 +50,6 @@ export default function Movies() {
                     </Row>
                 </Container>
             })}
-            {isLoading && <Container className={`d-flex align-items-center justify-content-center ${classes.loader}`}>
-                <img src={loader} alt="loader" />
-            </Container>}
         </Container>
     )
 }
