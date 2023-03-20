@@ -1,12 +1,15 @@
 import React, { useState } from 'react'
 import { Container, Button, Row } from 'react-bootstrap'
 import classes from "./Movies.module.css"
+import loader from "../../Assets/loader.png"
 
 export default function Movies() {
     const [movies, setMovies] = useState([]);
+    const [isLoading, setIsLoading] = useState(false);
 
     const fetchAPI_handler = async () => {
         try {
+            setIsLoading(true)
             const res = await fetch("https://swapi.dev/api/films");
             const data = await res.json();
             let fetchedMovies = await data.results.map((movie) => {
@@ -17,6 +20,7 @@ export default function Movies() {
                     movieText: movie.opening_crawl
                 }
             })
+            setIsLoading(false);
             setMovies(fetchedMovies);
         }
         catch (err) {
@@ -42,6 +46,9 @@ export default function Movies() {
                     </Row>
                 </Container>
             })}
+            {isLoading && <Container className={`d-flex align-items-center justify-content-center ${classes.loader}`}>
+                <img src={loader} alt="loader" />
+            </Container>}
         </Container>
     )
 }
