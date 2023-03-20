@@ -5,24 +5,23 @@ import classes from "./Movies.module.css"
 export default function Movies() {
     const [movies, setMovies] = useState([]);
 
-    const fetchAPI_handler = () => {
-        fetch("https://swapi.dev/api/films")
-            .then((res) => {
-                return res.json();
-            }).then((data) => {
-                let fetchedMovies = data.results.map((movie) => {
-                    return {
-                        id: movie.episode_id,
-                        title: movie.title,
-                        director: movie.director,
-                        movieText: movie.opening_crawl
-                    }
-                })
-                // console.log(data.results);
-                setMovies(fetchedMovies);
-            }).catch((err) => {
-                console.log(err);
+    const fetchAPI_handler = async () => {
+        try {
+            const res = await fetch("https://swapi.dev/api/films");
+            const data = await res.json();
+            let fetchedMovies = await data.results.map((movie) => {
+                return {
+                    id: movie.episode_id,
+                    title: movie.title,
+                    director: movie.director,
+                    movieText: movie.opening_crawl
+                }
             })
+            setMovies(fetchedMovies);
+        }
+        catch (err) {
+            console.log("some error found :- " + err)
+        }
     }
 
     return (
