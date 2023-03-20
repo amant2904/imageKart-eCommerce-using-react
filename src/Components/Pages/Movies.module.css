@@ -1,0 +1,39 @@
+.mainCont{
+    min-height: 100vh;
+}
+.btnCont{
+    border-radius: 22px;
+    background-color: rgb(227, 227, 227);
+}
+.fetchBtn{
+    background-color: rgb(0, 0, 56) !important;
+    color: white !important;
+    padding: 8px 25px !important;
+    font-size: 27px !important;
+    border-radius: 25px !important;
+}
+.fetchBtn:hover{
+    background-color: rgb(0, 0, 100) !important;
+}
+.movieCont{
+    margin: 15px 0px;
+    padding: 10px 20px;
+    background-color: rgb(227, 227, 227);
+    border-radius: 22px;
+}
+.movieTitle{
+    color: Red;
+    background-color: rgb(4, 4, 53);
+    text-align: center;
+    border-radius: 16px;
+    padding: 10px 0px;
+    margin: 0px 25px !important;
+}
+.movieDirector{
+    margin: 20px 15px !important;
+}
+.movieText{
+    color: rgb(14, 14, 93);
+    font-size: 22px;
+    margin: 0px 20px !important;
+}

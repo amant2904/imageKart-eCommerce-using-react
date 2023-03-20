@@ -12,15 +12,10 @@ export default function NavBar(props) {
             <Container>
                 <Navbar.Brand href="/">ImageKart</Navbar.Brand>
                 <Nav>
-                    <Nav.Link>
-                        <Link to="/home" className={classes.navLink}>Home</Link>
-                    </Nav.Link>
-                    <Nav.Link>
-                        <Link to="/" className={classes.navLink}>Store</Link>
-                    </Nav.Link>
-                    <Nav.Link>
-                        <Link to="/about" className={classes.navLink}>About</Link>
-                    </Nav.Link>
+                    <Link to="/home" className={classes.navLink}>Home</Link>
+                    <Link to="/" className={classes.navLink}>Store</Link>
+                    <Link to="/about" className={classes.navLink}>About</Link>
+                    <Link to="/movies" className={classes.navLink}>Movies</Link>
                 </Nav>
                 <Button onClick={props.showCart} className={classes.cartBtn}>
                     <span className={classes.cartBtn_text}>Cart</span>

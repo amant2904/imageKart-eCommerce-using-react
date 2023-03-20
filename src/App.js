@@ -8,6 +8,7 @@ import About from "./Components/Pages/About"
 import { Routes, Route } from 'react-router-dom';
 import HomePage from './Components/Pages/HomePage';
 import Footer from './Components/Footer/Footer';
+import Movies from './Components/Pages/Movies';
 
 
 function App() {
@@ -32,6 +33,7 @@ function App() {
         <Route path='/home' element={<HomePage />} />
         <Route exact path='/' element={<Store showCart={showCart_handler} />} />
         <Route path='/about' element={<About />} />
+        <Route path='/movies' element={<Movies />} />
       </Routes>
       <Footer />
     </CartProvider>

@@ -2,7 +2,7 @@
     position: absolute;
     top: 80px;
     right: 0px;
-    min-height: 88vh;
+    height: 88vh;
     border: 2px solid rgb(250, 144, 112);
     padding: 20px;
     background-color: #edf7ff;
