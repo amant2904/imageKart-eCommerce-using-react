@@ -4,6 +4,7 @@
 .btnCont{
     border-radius: 22px;
     background-color: rgb(227, 227, 227);
+    border: 1px solid black;
 }
 .fetchBtn{
     background-color: rgb(0, 0, 56) !important;
@@ -20,6 +21,7 @@
     padding: 10px 20px;
     background-color: rgb(227, 227, 227);
     border-radius: 22px;
+    border: 1px solid black;
 }
 .movieTitle{
     color: Red;
@@ -54,3 +56,20 @@
       transform: rotate(359deg);
     }
   }
+
+.formCont{
+    background-color: rgb(227, 227, 227);
+    border-radius: 25px;
+    border: 1px solid black;
+}
+.formSubmit_btn{
+    padding: 8px 36px !important;
+    background-color: #050539 !important;
+    /* display: block !important;
+    margin: auto !important; */
+    font-size: 25px !important;
+    border-radius: 16px !important;
+}
+.formSubmit_btn:hover{
+    background-color: rgb(10, 10, 95) !important;
+}
