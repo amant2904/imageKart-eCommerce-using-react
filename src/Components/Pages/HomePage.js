@@ -47,7 +47,7 @@ export default function HomePage() {
                 <h1 className="text-center my-4">TOURS</h1>
                 <ul>
                     {tours.map((tour) => {
-                        return <li className={classes.tourList}>
+                        return <li className={classes.tourList} key={Math.random()}>
                             <span>{tour.date}</span>
                             <span>{tour.city}</span>
                             <span>{tour.place}</span>
