@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState, useCallback } from 'react'
 import { Container, Button, Row } from 'react-bootstrap'
 import classes from "./Movies.module.css"
 import loader from "../../Assets/loader.png"
@@ -8,17 +8,19 @@ export default function Movies() {
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState(null);
 
-    const fetchAPI_handler = async () => {
+    const api_url = "https://swapi.dev/api/films";
+    const fetchAPI_handler = useCallback(async () => {
+        console.log("fetching");
         setIsLoading(true)
+        setMovies([])
         try {
             setError(null)
-            setMovies([])
-            const res = await fetch("https://swapi.dev/api/film");
+            let res = await fetch(api_url)
             if (!res.ok) {
-                throw new Error("something went wrong");
+                throw new Error("Something Went Wrong ...Retrying");
             }
             const data = await res.json();
-            let fetchedMovies = await data.results.map((movie) => {
+            let fetchedMovies = data.results.map((movie) => {
                 return {
                     id: movie.episode_id,
                     title: movie.title,
@@ -27,10 +29,19 @@ export default function Movies() {
                 }
             })
             setMovies(fetchedMovies);
+            setIsLoading(false);
         }
         catch (err) {
+            console.log("error found");
             setError(err);
         }
+    }, [])
+
+    useEffect(() => {
+        fetchAPI_handler();
+    }, [fetchAPI_handler])
+
+    const stopFetching = () => {
         setIsLoading(false);
     }
 
@@ -38,15 +49,21 @@ export default function Movies() {
         <h3>No Movies Found</h3>
     </Container>
 
-    if (isLoading) {
+    if (!error && isLoading) {
         errorAndLoader = <Container className={`d-flex align-items-center justify-content-center ${classes.loader}`}>
             <img src={loader} alt="loader" />
         </Container>
     }
-
-    if (error) {
-        errorAndLoader = <Container className={`d-flex align-items-center justify-content-center ${classes.loader}`}>
+    else if (error && isLoading) {
+        errorAndLoader = <Container className={`d-flex flex-column align-items-center justify-content-center ${classes.loader}`}>
             <h3>{error.message}</h3>
+            <img src={loader} alt="loader" />
+            <Button className='px-4 py-2' variant='danger' onClick={stopFetching}>Cancel</Button>
+        </Container>
+    }
+    else if (error && !isLoading) {
+        errorAndLoader = <Container className={`d-flex flex-column align-items-center justify-content-center ${classes.loader}`}>
+            <h3>Something Went Wrong...</h3>
         </Container>
     }
 
@@ -55,8 +72,8 @@ export default function Movies() {
             <Container className={`${classes.btnCont} p-4 my-4 d-flex align-items-center justify-content-center`}>
                 <Button className={`${classes.fetchBtn}`} onClick={fetchAPI_handler}>Fetch Movies</Button>
             </Container>
-            {errorAndLoader}
-            {movies.map((movie) => {
+            {movies.length === 0 && errorAndLoader}
+            {movies.length > 0 && movies.map((movie) => {
                 return <Container key={movie.id} className={classes.movieCont}>
                     <Row className={classes.movieTitle}>
                         <h2>{movie.title}</h2>
