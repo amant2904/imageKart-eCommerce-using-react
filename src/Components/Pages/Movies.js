@@ -6,12 +6,17 @@ import loader from "../../Assets/loader.png"
 export default function Movies() {
     const [movies, setMovies] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
+    const [error, setError] = useState(null);
 
     const fetchAPI_handler = async () => {
+        setIsLoading(true)
         try {
+            setError(null)
             setMovies([])
-            setIsLoading(true)
-            const res = await fetch("https://swapi.dev/api/films");
+            const res = await fetch("https://swapi.dev/api/film");
+            if (!res.ok) {
+                throw new Error("something went wrong");
+            }
             const data = await res.json();
             let fetchedMovies = await data.results.map((movie) => {
                 return {
@@ -21,12 +26,28 @@ export default function Movies() {
                     movieText: movie.opening_crawl
                 }
             })
-            setIsLoading(false);
             setMovies(fetchedMovies);
         }
         catch (err) {
-            console.log("some error found :- " + err)
+            setError(err);
         }
+        setIsLoading(false);
+    }
+
+    let errorAndLoader = <Container className={`d-flex align-items-center justify-content-center ${classes.loader}`}>
+        <h3>No Movies Found</h3>
+    </Container>
+
+    if (isLoading) {
+        errorAndLoader = <Container className={`d-flex align-items-center justify-content-center ${classes.loader}`}>
+            <img src={loader} alt="loader" />
+        </Container>
+    }
+
+    if (error) {
+        errorAndLoader = <Container className={`d-flex align-items-center justify-content-center ${classes.loader}`}>
+            <h3>{error.message}</h3>
+        </Container>
     }
 
     return (
@@ -34,9 +55,7 @@ export default function Movies() {
             <Container className={`${classes.btnCont} p-4 my-4 d-flex align-items-center justify-content-center`}>
                 <Button className={`${classes.fetchBtn}`} onClick={fetchAPI_handler}>Fetch Movies</Button>
             </Container>
-            {isLoading && <Container className={`d-flex align-items-center justify-content-center ${classes.loader}`}>
-                <img src={loader} alt="loader" />
-            </Container>}
+            {errorAndLoader}
             {movies.map((movie) => {
                 return <Container key={movie.id} className={classes.movieCont}>
                     <Row className={classes.movieTitle}>

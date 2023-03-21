@@ -5,7 +5,7 @@ import Header from './Components/Header/Header';
 import Cart from './Components/Cart/Cart';
 import CartProvider from './Components/Store/CartProvider';
 import About from "./Components/Pages/About"
-import { Routes, Route, useLocation } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import HomePage from './Components/Pages/HomePage';
 import Footer from './Components/Footer/Footer';
 import Movies from './Components/Pages/Movies';

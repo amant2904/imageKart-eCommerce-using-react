@@ -4,11 +4,12 @@
     font-size: 20px;
     color: white;
 }
-.navLink:hover,
-.navLink:active{
+.navLink:hover{
     color: aqua;
 }
-
+.active{
+    color: aqua !important;
+}
 .cartBtn{
     border: none !important;
     background-color: transparent !important;
