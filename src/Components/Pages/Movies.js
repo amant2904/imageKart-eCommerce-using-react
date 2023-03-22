@@ -14,7 +14,7 @@ export default function Movies() {
     const [movieDirector, setMovieDirector] = useState("");
     // ____________________________________
 
-    const api_url = "https://swapi.dev/api/films";
+    const api_url = "https://movies-react-42dac-default-rtdb.firebaseio.com/film.json";
 
     const fetchAPI_handler = useCallback(async (e) => {
         console.log("fetching");
@@ -29,15 +29,16 @@ export default function Movies() {
                 throw new Error("Something Went Wrong...Retrying");
             }
             const data = await res.json();
-            let fetchedMovies = data.results.map((movie) => {
-                return {
-                    id: movie.episode_id,
-                    title: movie.title,
-                    director: movie.director,
-                    movieText: movie.opening_crawl
-                }
-            })
-            setMovies(fetchedMovies);
+            let loadedMovies = [];
+            for (let key in data) {
+                loadedMovies.push({
+                    id: key,
+                    title: data[key].name,
+                    director: data[key].director,
+                    movieText: data[key].opening_text
+                })
+            }
+            setMovies(loadedMovies);
             setIsLoading(false);
             setError(null);
         }
@@ -87,7 +88,7 @@ export default function Movies() {
         </Container>
     }
 
-    // manually adding movie form 
+    // manually adding and deleting movie 
     const movieName_handler = (e) => {
         setMovieName(e.target.value);
     }
@@ -100,14 +101,35 @@ export default function Movies() {
         setMovieDirector(e.target.value);
     }
 
-    const movieSubmit_handler = (e) => {
+    const movieSubmit_handler = async (e) => {
         e.preventDefault();
         let newMovieObj = {
             name: movieName,
             director: movieDirector,
             opening_text: movie_openingText
         }
-        console.log(newMovieObj);
+        let res = await fetch(api_url, {
+            method: 'POST',
+            body: JSON.stringify(newMovieObj),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        if (res.ok) {
+            await fetchAPI_handler();
+            // alert("Movie Added Successfully");
+        }
+    }
+
+    const deleteMovie_handler = async (e) => {
+        const movie_id = e.target.parentElement.parentElement.lastElementChild.textContent;
+        let res = await fetch("https://movies-react-42dac-default-rtdb.firebaseio.com/film/" + movie_id + ".json", {
+            method: "DELETE"
+        })
+        if (res.ok) {
+            await fetchAPI_handler();
+            // alert("Deleted Successfully");
+        }
     }
     // _____________________________________
 
@@ -143,12 +165,14 @@ export default function Movies() {
                     <Row className={classes.movieTitle}>
                         <h2>{movie.title}</h2>
                     </Row>
-                    <Row className={classes.movieDirector}>
-                        <h3>By :- {movie.director}</h3>
+                    <Row className={`${classes.movieDirector} justify-content-between align-items-center`}>
+                        <h3 className='w-auto'>By :- {movie.director}</h3>
+                        <Button variant='danger' className='btn-sm w-auto mx-3' onClick={deleteMovie_handler}>Delete</Button>
                     </Row>
                     <Row className={classes.movieText}>
                         <p>{movie.movieText}</p>
                     </Row>
+                    <p hidden>{movie.id}</p>
                 </Container>
             })}
         </Container>
