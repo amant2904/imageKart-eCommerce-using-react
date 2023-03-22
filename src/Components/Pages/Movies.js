@@ -7,20 +7,26 @@ export default function Movies() {
     const [movies, setMovies] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState(null);
+
+    // state for movie adding form
     const [movieName, setMovieName] = useState("");
     const [movie_openingText, setMovieOpeningText] = useState("");
     const [movieDirector, setMovieDirector] = useState("");
+    // ____________________________________
 
     const api_url = "https://swapi.dev/api/films";
-    const fetchAPI_handler = useCallback(async () => {
+
+    const fetchAPI_handler = useCallback(async (e) => {
         console.log("fetching");
-        setIsLoading(true)
-        setMovies([])
+        setMovies([]);
+        if (e) {
+            setError(null);
+        }
         try {
-            setError(null)
-            let res = await fetch(api_url)
+            setIsLoading(true);
+            let res = await fetch(api_url);
             if (!res.ok) {
-                throw new Error("Something Went Wrong ...Retrying");
+                throw new Error("Something Went Wrong...Retrying");
             }
             const data = await res.json();
             let fetchedMovies = data.results.map((movie) => {
@@ -33,12 +39,23 @@ export default function Movies() {
             })
             setMovies(fetchedMovies);
             setIsLoading(false);
+            setError(null);
         }
         catch (err) {
-            console.log("error found");
             setError(err);
         }
     }, [])
+
+    useEffect(() => {
+        let keepFetching;
+        if (error && isLoading) {
+            keepFetching = setInterval(() => {
+                fetchAPI_handler();
+            }, 5000)
+        }
+
+        return () => clearInterval(keepFetching)
+    }, [error, isLoading, fetchAPI_handler])
 
     useEffect(() => {
         fetchAPI_handler();
@@ -71,20 +88,19 @@ export default function Movies() {
     }
 
     // manually adding movie form 
-
-    const movieName_handler = useCallback((e) => {
+    const movieName_handler = (e) => {
         setMovieName(e.target.value);
-    }, [])
+    }
 
-    const movie_openingText_handler = useCallback((e) => {
+    const movie_openingText_handler = (e) => {
         setMovieOpeningText(e.target.value);
-    }, [])
+    }
 
-    const movieDirector_handler = useCallback((e) => {
+    const movieDirector_handler = (e) => {
         setMovieDirector(e.target.value);
-    }, [])
+    }
 
-    const movieSubmit_handler = useCallback((e) => {
+    const movieSubmit_handler = (e) => {
         e.preventDefault();
         let newMovieObj = {
             name: movieName,
@@ -92,7 +108,8 @@ export default function Movies() {
             opening_text: movie_openingText
         }
         console.log(newMovieObj);
-    }, [movieName, movieDirector, movie_openingText])
+    }
+    // _____________________________________
 
     return (
         <Container className={`${classes.mainCont}`}>
@@ -115,9 +132,11 @@ export default function Movies() {
                     </Button>
                 </Form>
             </Container>
+
             <Container className={`${classes.btnCont} p-4 my-4 d-flex align-items-center justify-content-center`}>
-                <Button className={`${classes.fetchBtn}`} onClick={fetchAPI_handler}>Fetch Movies</Button>
+                <Button className={`${classes.fetchBtn}`} onClick={fetchAPI_handler} id="fetchBtn">Fetch Movies</Button>
             </Container>
+
             {movies.length === 0 && errorAndLoader}
             {movies.length > 0 && movies.map((movie) => {
                 return <Container key={movie.id} className={classes.movieCont}>
