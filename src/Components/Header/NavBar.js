@@ -16,6 +16,7 @@ export default function NavBar(props) {
                     <Link to="/home" className={`${classes.navLink} ${(location.pathname === "/home") ? classes.active : ""}`}>Home</Link>
                     <Link to="/" className={`${classes.navLink} ${(location.pathname === "/") ? classes.active : ""}`}>Store</Link>
                     <Link to="/about" className={`${classes.navLink} ${(location.pathname === "/about") ? classes.active : ""}`}>About</Link>
+                    <Link to="/contact" className={`${classes.navLink} ${(location.pathname === "/contact") ? classes.active : ""}`}>Contact</Link>
                     <Link to="/movies" className={`${classes.navLink} ${(location.pathname === "/movies") ? classes.active : ""}`}>Movies</Link>
                 </Nav>
                 <Button onClick={props.showCart} className={classes.cartBtn}>

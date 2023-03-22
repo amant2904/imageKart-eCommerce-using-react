@@ -4,7 +4,8 @@
     font-size: 20px;
     color: white;
 }
-.navLink:hover{
+.navLink:hover,
+.navLink:active{
     color: aqua;
 }
 .active{

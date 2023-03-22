@@ -9,6 +9,7 @@ import { Routes, Route } from 'react-router-dom';
 import HomePage from './Components/Pages/HomePage';
 import Footer from './Components/Footer/Footer';
 import Movies from './Components/Pages/Movies';
+import Contactus from './Components/Pages/Contactus';
 
 
 function App() {
@@ -32,6 +33,7 @@ function App() {
         <Route path='/home' element={<HomePage />} />
         <Route exact path='/' element={<Store showCart={showCart_handler} />} />
         <Route path='/about' element={<About />} />
+        <Route path='/contact' element={<Contactus />} />
         <Route path='/movies' element={<Movies />} />
       </Routes>
       <Footer />
