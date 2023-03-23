@@ -1,5 +1,6 @@
 .mainCont{
     min-height: 100vh;
+    width: 60% !important;
 }
 .btnCont{
     border-radius: 22px;

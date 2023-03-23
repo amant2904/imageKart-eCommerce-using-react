@@ -1,0 +1,19 @@
+.productImg{
+    height: 70vh;
+}
+.product_content{
+    padding: 10px;
+}
+.content_title{
+    font-weight: 400;
+}
+.reviewMark{
+    background-color: green;
+    color: white;
+    padding: 3px 5px;
+    border-radius: 10px;
+}
+.offerList{
+    margin: 0px;
+    padding: 0px;
+}

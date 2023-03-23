@@ -5,11 +5,13 @@ import Header from './Components/Header/Header';
 import Cart from './Components/Cart/Cart';
 import CartProvider from './Components/Store/CartProvider';
 import About from "./Components/Pages/About"
-import { Routes, Route } from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom';
 import HomePage from './Components/Pages/HomePage';
 import Footer from './Components/Footer/Footer';
 import Movies from './Components/Pages/Movies';
 import Contactus from './Components/Pages/Contactus';
+import ProductDetail from "./Components/Product/ProductDetails/ProductDetail"
+import ProductContextProvider from './Components/Store/ProductContextProvider';
 
 
 function App() {
@@ -29,13 +31,33 @@ function App() {
     <CartProvider>
       {showCart && <Cart closeCart={hideCart_handler} />}
       <Header showCart={showCart_handler} />
-      <Routes>
-        <Route path='/home' element={<HomePage />} />
-        <Route exact path='/' element={<Store showCart={showCart_handler} />} />
-        <Route path='/about' element={<About />} />
-        <Route path='/contact' element={<Contactus />} />
-        <Route path='/movies' element={<Movies />} />
-      </Routes>
+      <Switch>
+        <Route path='/home' >
+          <HomePage />
+        </Route>
+        <Route exact path="/">
+          <Redirect to="/store" />
+        </Route>
+        <Route exact path='/store'>
+          <ProductContextProvider>
+            <Store showCart={showCart_handler} />
+          </ProductContextProvider>
+        </Route>
+        <Route exact path='/store/:productId'>
+          <ProductContextProvider>
+            <ProductDetail />
+          </ProductContextProvider>
+        </Route>
+        <Route path='/about'>
+          <About />
+        </Route>
+        <Route path='/contact'>
+          <Contactus />
+        </Route>
+        <Route path='/movies'>
+          <Movies />
+        </Route>
+      </Switch>
       <Footer />
     </CartProvider>
   );

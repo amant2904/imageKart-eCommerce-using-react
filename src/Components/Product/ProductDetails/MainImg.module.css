@@ -1,0 +1,8 @@
+.mainImg{
+    padding: 10px;
+    height: 80vh;
+}
+.mainImg img{
+    height: 100%;
+    width: 100%;
+}

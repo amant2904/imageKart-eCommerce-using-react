@@ -1,0 +1,17 @@
+.otherImg{
+    padding: 10px 0px 10px 10px;
+    height: 80vh;
+}
+.allImg{
+    height: 15%;
+    width: 80%;
+    margin: 8px auto;
+}
+.allImg img{
+    height: 100%;
+    width: 100%;
+}
+.allImg:hover{
+    border: 2px solid aqua;
+    cursor: pointer;
+}
