@@ -12,6 +12,6 @@
     width: 100%;
 }
 .allImg:hover{
-    border: 2px solid aqua;
+    border: 3px solid aqua;
     cursor: pointer;
 }

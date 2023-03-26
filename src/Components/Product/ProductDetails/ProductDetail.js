@@ -4,12 +4,14 @@ import MainImg from './MainImg';
 import ProductAllImages from './ProductAllImages';
 import classes from "./ProductDetail.module.css"
 import ProductText from "./ProductText"
-import { useParams } from 'react-router-dom';
+import { useParams, useLocation } from 'react-router-dom';
 import ProductContext from '../../Store/product-context';
 
 export default function ProductDetail() {
     const prdCtx = useContext(ProductContext);
     const path = useParams();
+    const myLocation = useLocation();
+    console.log(myLocation);
 
     const productIndex = prdCtx.findIndex((prd) => {
         return prd.id === path.productId

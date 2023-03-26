@@ -28,7 +28,7 @@ export default function Product(props) {
             <Container >
                 <h3 className='text-center mb-3 fs-4'>{props.title}</h3>
                 <Link to={`/store/${props.id}`}>
-                    <img src={props.imageURL} alt="Product view" style={{ width: "100%" }} />
+                    <img src={props.imageURL} alt="Product view" style={{ width: "100%", cursor: "pointer" }} />
                 </Link>
                 <Row className='my-3 align-items-center'>
                     <Col>Rs. <span>{props.price}</span></Col>

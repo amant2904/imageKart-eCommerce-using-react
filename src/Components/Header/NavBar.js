@@ -11,7 +11,11 @@ export default function NavBar(props) {
     return (
         <Navbar bg="dark" variant="dark" className='position-sticky top-0'>
             <Container>
-                <Navbar.Brand href="/">ImageKart</Navbar.Brand>
+                <Navbar.Brand>
+                    <Link to="/" className={classes.logo}>
+                        ImageKart
+                    </Link>
+                </Navbar.Brand>
                 <Nav>
                     <Link to="/home" className={`${classes.navLink} ${(location.pathname === "/home") ? classes.active : ""}`}>Home</Link>
                     <Link to="/" className={`${classes.navLink} ${(location.pathname === "/store") ? classes.active : ""}`}>Store</Link>
