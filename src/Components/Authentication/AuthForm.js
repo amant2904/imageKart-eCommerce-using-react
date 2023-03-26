@@ -42,9 +42,8 @@ export default function AuthForm() {
                 if (!res.ok) {
                     throw new Error(data.error.message);
                 }
-                console.log(data);
-                authCtx.login_handler(data.idToken);
-                history.replace("/store");
+                authCtx.login_handler(data.idToken, data.email);
+                history.push("/store");
             }
             catch (err) {
                 alert(err);
@@ -54,7 +53,7 @@ export default function AuthForm() {
         else {
             setLoading(true);
             try {
-                const res = await fetch(api_url, {
+                const res = await fetch("https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyAp4upS2LPL02GaKGSiXEwrjpAyMiY13JM", {
                     method: 'POST',
                     headers: {
                         'Content-Type': "application/json"
@@ -66,6 +65,8 @@ export default function AuthForm() {
                     })
                 });
                 const data = await res.json();
+                console.log(res);
+                console.log(data);
                 if (!res.ok) {
                     throw new Error(data.error.message);
                 }

@@ -36,3 +36,7 @@
     font-size: 21px;
     margin: 0px 4px;
 }
+.logoutBtn{
+    background-color: transparent;
+    border: none;
+}

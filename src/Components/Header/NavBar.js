@@ -3,10 +3,18 @@ import { Button, Container, Navbar, Nav } from 'react-bootstrap'
 import CartContext from '../Store/cart-context'
 import classes from "./NavBar.module.css"
 import { Link, useLocation } from 'react-router-dom'
+import AuthContext from '../Store/auth-context'
 
 export default function NavBar(props) {
     const cartCtx = useContext(CartContext);
+    const authCtx = useContext(AuthContext);
     const location = useLocation();
+
+    const loggedIn = authCtx.isLoggedIn;
+
+    const logout_handler = () => {
+        authCtx.logout_handler();
+    }
 
     return (
         <Navbar bg="dark" variant="dark" className='position-sticky top-0'>
@@ -24,11 +32,12 @@ export default function NavBar(props) {
                     <Link to="/movies" className={`${classes.navLink} ${(location.pathname === "/movies") ? classes.active : ""}`}>Movies</Link>
                 </Nav>
                 <div className='d-flex'>
-                    <Link to="/auth" className={`${classes.navLink}`} variant="info">Login</Link>
-                    <Button onClick={props.showCart} className={classes.cartBtn}>
+                    {!loggedIn && <Link to="/auth" className={`${classes.navLink}`} variant="info">Login</Link>}
+                    {loggedIn && <button onClick={logout_handler} className={`${classes.navLink} ${classes.logoutBtn}`}>Logout</button>}
+                    {loggedIn && <Button onClick={props.showCart} className={classes.cartBtn}>
                         <span className={classes.cartBtn_text}>Cart</span>
                         <sup className={classes.cartBtn_num}>{cartCtx.totalQuantity}</sup>
-                    </Button>
+                    </Button>}
                 </div>
             </Container>
         </Navbar>

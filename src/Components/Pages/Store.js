@@ -15,8 +15,8 @@ export default function AllProducts(props) {
             <Container style={{ width: "50%" }} className="mt-3">
                 <h1 className='text-center text-info font-weight-bold'>PRODUCTS</h1>
                 <Row lg={2} className="justify-content-between">
-                    {prdCtx.map((product) => {
-                        return <Product key={product.id} id={product.id} title={product.title} imageURL={product.imageUrl[0]} price={product.price} />
+                    {prdCtx.products.map((product) => {
+                        return <Product key={product.id} id={product.id} title={product.title} imageURL={product.imageUrl[0]} price={product.price} database_id={product.database} />
                     })}
                 </Row>
                 <Row className='justify-content-center my-2'>

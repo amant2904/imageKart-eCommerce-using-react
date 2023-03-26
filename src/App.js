@@ -11,7 +11,6 @@ import Footer from './Components/Footer/Footer';
 import Movies from './Components/Pages/Movies';
 import Contactus from './Components/Pages/Contactus';
 import ProductDetail from "./Components/Product/ProductDetails/ProductDetail"
-import ProductContextProvider from './Components/Store/ProductContextProvider';
 import Login from './Components/Pages/Login';
 import AuthContext from './Components/Store/auth-context';
 
@@ -31,16 +30,18 @@ function App() {
 
   const authCtx = useContext(AuthContext);
   const loggedIn = authCtx.isLoggedIn;
-  console.log(loggedIn);
+  if (!loggedIn && showCart) {
+    hideCart_handler();
+  }
 
   return (
     <CartProvider>
       {showCart && <Cart closeCart={hideCart_handler} />}
       <Header showCart={showCart_handler} />
       <Switch>
-        <Route path="/auth">
+        {!loggedIn && <Route path="/auth">
           <Login />
-        </Route>
+        </Route>}
         <Route path='/home' >
           <HomePage />
         </Route>
@@ -48,15 +49,11 @@ function App() {
           <Redirect to="/home" />
         </Route>
         <Route exact path='/store'>
-          {loggedIn && <ProductContextProvider>
-            <Store showCart={showCart_handler} />
-          </ProductContextProvider>}
+          {loggedIn && <Store showCart={showCart_handler} />}
           {!loggedIn && <Redirect to="/auth" />}
         </Route>
         <Route exact path='/store/:productId'>
-          <ProductContextProvider>
-            <ProductDetail />
-          </ProductContextProvider>
+          <ProductDetail />
         </Route>
         <Route path='/about'>
           <About />
@@ -66,6 +63,9 @@ function App() {
         </Route>
         <Route path='/movies'>
           <Movies />
+        </Route>
+        <Route path='*'>
+          <Redirect to="/home" />
         </Route>
       </Switch>
       <Footer />

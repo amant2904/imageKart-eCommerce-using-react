@@ -8,7 +8,18 @@ export default function CartItem(props) {
 
     const removeFromCart_handler = (e) => {
         const prd_id = e.target.parentElement.parentElement.lastElementChild.textContent;
-        cartCtx.removeItem(prd_id)
+        const database_id = e.target.parentElement.parentElement.children[3].textContent;
+        const quantity = e.target.parentElement.firstElementChild.firstElementChild.textContent;
+
+        const obj = {
+            title: props.title,
+            imageUrl: props.imageUrl,
+            price: props.price,
+            identity: prd_id,
+            database: database_id,
+            quantity: quantity
+        }
+        cartCtx.removeItem(obj);
     }
 
     return (
@@ -21,9 +32,10 @@ export default function CartItem(props) {
                 <p className='my-0'>Rs.{props.price}</p>
             </Col>
             <Col md={5} className="d-flex align-items-center justify-content-end">
-                <span className='px-2 py-1 mx-2 border border-2 border-warning'>x {props.quantity}</span>
+                <span className='px-2 py-1 mx-2 border border-2 border-warning'>x <span>{props.quantity}</span></span>
                 <Button variant="warning" className='btn-sm' onClick={removeFromCart_handler}>Remove</Button>
             </Col>
+            <p hidden>{props.database_id}</p>
             <p hidden>{props.identity}</p>
         </Row>
     )
