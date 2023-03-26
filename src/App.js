@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import './App.css';
 import Store from './Components/Pages/Store';
 import Header from './Components/Header/Header';
@@ -13,6 +13,7 @@ import Contactus from './Components/Pages/Contactus';
 import ProductDetail from "./Components/Product/ProductDetails/ProductDetail"
 import ProductContextProvider from './Components/Store/ProductContextProvider';
 import Login from './Components/Pages/Login';
+import AuthContext from './Components/Store/auth-context';
 
 
 function App() {
@@ -28,21 +29,29 @@ function App() {
     setShowCart(true);
   }
 
+  const authCtx = useContext(AuthContext);
+  const loggedIn = authCtx.isLoggedIn;
+  console.log(loggedIn);
+
   return (
     <CartProvider>
       {showCart && <Cart closeCart={hideCart_handler} />}
       <Header showCart={showCart_handler} />
       <Switch>
+        <Route path="/auth">
+          <Login />
+        </Route>
         <Route path='/home' >
           <HomePage />
         </Route>
         <Route exact path="/">
-          <Redirect to="/store" />
+          <Redirect to="/home" />
         </Route>
         <Route exact path='/store'>
-          <ProductContextProvider>
+          {loggedIn && <ProductContextProvider>
             <Store showCart={showCart_handler} />
-          </ProductContextProvider>
+          </ProductContextProvider>}
+          {!loggedIn && <Redirect to="/auth" />}
         </Route>
         <Route exact path='/store/:productId'>
           <ProductContextProvider>
@@ -54,9 +63,6 @@ function App() {
         </Route>
         <Route path='/contact'>
           <Contactus />
-        </Route>
-        <Route path="/auth">
-          <Login />
         </Route>
         <Route path='/movies'>
           <Movies />

@@ -18,7 +18,7 @@ export default function NavBar(props) {
                 </Navbar.Brand>
                 <Nav>
                     <Link to="/home" className={`${classes.navLink} ${(location.pathname === "/home") ? classes.active : ""}`}>Home</Link>
-                    <Link to="/" className={`${classes.navLink} ${(location.pathname === "/store") ? classes.active : ""}`}>Store</Link>
+                    <Link to="/store" className={`${classes.navLink} ${(location.pathname === "/store") ? classes.active : ""}`}>Store</Link>
                     <Link to="/about" className={`${classes.navLink} ${(location.pathname === "/about") ? classes.active : ""}`}>About</Link>
                     <Link to="/contact" className={`${classes.navLink} ${(location.pathname === "/contact") ? classes.active : ""}`}>Contact</Link>
                     <Link to="/movies" className={`${classes.navLink} ${(location.pathname === "/movies") ? classes.active : ""}`}>Movies</Link>
