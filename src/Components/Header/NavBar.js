@@ -23,10 +23,13 @@ export default function NavBar(props) {
                     <Link to="/contact" className={`${classes.navLink} ${(location.pathname === "/contact") ? classes.active : ""}`}>Contact</Link>
                     <Link to="/movies" className={`${classes.navLink} ${(location.pathname === "/movies") ? classes.active : ""}`}>Movies</Link>
                 </Nav>
-                <Button onClick={props.showCart} className={classes.cartBtn}>
-                    <span className={classes.cartBtn_text}>Cart</span>
-                    <sup className={classes.cartBtn_num}>{cartCtx.totalQuantity}</sup>
-                </Button>
+                <div className='d-flex'>
+                    <Link to="/auth" className={`${classes.navLink}`} variant="info">Login</Link>
+                    <Button onClick={props.showCart} className={classes.cartBtn}>
+                        <span className={classes.cartBtn_text}>Cart</span>
+                        <sup className={classes.cartBtn_num}>{cartCtx.totalQuantity}</sup>
+                    </Button>
+                </div>
             </Container>
         </Navbar>
     )

@@ -1,0 +1,31 @@
+.authForm{
+    background-color: rgb(234, 234, 234);
+    padding: 30px;
+    min-width: 35%;
+    border: 1px solid black;
+}
+.formInput{
+    font-size: 20px;
+    width: 100%;
+}
+.createAccount{
+    margin: auto;
+    border: none;
+    background-color: transparent;
+    color: rgb(17, 168, 168);
+    font-size: 22px;
+    margin-top: 10px;
+}
+.loader{
+    height: 50px;
+    width: 50px;
+    animation: rotation 3s infinite linear
+}
+@keyframes rotation {
+    from{
+        transform: rotate(0deg);
+    }
+    to{
+        transform: rotate(359deg);
+    }
+}

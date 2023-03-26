@@ -12,6 +12,7 @@ import Movies from './Components/Pages/Movies';
 import Contactus from './Components/Pages/Contactus';
 import ProductDetail from "./Components/Product/ProductDetails/ProductDetail"
 import ProductContextProvider from './Components/Store/ProductContextProvider';
+import Login from './Components/Pages/Login';
 
 
 function App() {
@@ -53,6 +54,9 @@ function App() {
         </Route>
         <Route path='/contact'>
           <Contactus />
+        </Route>
+        <Route path="/auth">
+          <Login />
         </Route>
         <Route path='/movies'>
           <Movies />
