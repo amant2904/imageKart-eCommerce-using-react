@@ -26,20 +26,20 @@ export default function Product(props) {
         cartCtx.addItem(product_detail)
     }
 
-    const obj = {
-        title: "my title"
-    }
+    const fetching = cartCtx.fetching;
 
     return (
         <Col style={{ width: "45%" }} className={`${classes.whole_product} p-3`}>
             <Container >
                 <h3 className='text-center mb-3 fs-4'>{props.title}</h3>
-                <Link to={`/store/${props.id}`} state={obj}>
+                <Link to={`/store/${props.id}`}>
                     <img src={props.imageURL} alt="Product view" style={{ width: "100%" }} />
                 </Link>
                 <Row className='my-3 align-items-center'>
                     <Col>Rs. <span>{props.price}</span></Col>
-                    <Col><Button variant='info' onClick={addInCart_handler} style={{ float: "right" }}>Add To Cart</Button></Col>
+                    <Col>
+                        {!fetching && <Button variant='info' onClick={addInCart_handler} style={{ float: "right" }}>Add To Cart</Button>}
+                    </Col>
                 </Row>
                 <p hidden>{props.database_id}</p>
                 <p hidden>{props.id}</p>

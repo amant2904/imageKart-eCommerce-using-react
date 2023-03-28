@@ -8,6 +8,7 @@
     background-color: #edf7ff;
     max-width: 30vw !important;
     overflow: scroll;
+    z-index: 1000;
 }
 .closeBtn{
     float: right;

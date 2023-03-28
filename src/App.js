@@ -52,9 +52,9 @@ function App() {
           {loggedIn && <Store showCart={showCart_handler} />}
           {!loggedIn && <Redirect to="/auth" />}
         </Route>
-        <Route exact path='/store/:productId'>
+        {loggedIn && <Route exact path='/store/:productId'>
           <ProductDetail />
-        </Route>
+        </Route>}
         <Route path='/about'>
           <About />
         </Route>
@@ -65,7 +65,7 @@ function App() {
           <Movies />
         </Route>
         <Route path='*'>
-          <Redirect to="/home" />
+          <Redirect to="/auth" />
         </Route>
       </Switch>
       <Footer />

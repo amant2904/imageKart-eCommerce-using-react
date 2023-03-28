@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useReducer } from 'react'
+import React, { useContext, useEffect, useReducer, useState } from 'react'
 import CartContext from './cart-context'
 import AuthContext from './auth-context'
 import ProductContext from './product-context'
@@ -85,7 +85,7 @@ export default function CartProvider(props) {
     }
     const loggedIn = authCtx.isLoggedIn;
     const currUserEmail = emailFilter(authCtx.userEmail);
-    const api_url = "https://crudcrud.com/api/455fc201b1d942e196840eaa1e8b1418";
+    const api_url = "https://crudcrud.com/api/eefd7da7216f4a00918e631efbeeea31";
 
     const prdCtx = useContext(ProductContext);
 
@@ -111,7 +111,10 @@ export default function CartProvider(props) {
     }, [currUserEmail, loggedIn])
     // currUserEmail, api_url, prdCtx
 
+
+    const [fetching, setFetching] = useState(false);
     const addItem_handler = async (obj) => {
+        setFetching(true);
         if (obj.database) {
             try {
                 const prv = await fetch(api_url + "/cart" + currUserEmail + "/" + obj.database);
@@ -151,13 +154,14 @@ export default function CartProvider(props) {
                 if (!res.ok) {
                     throw new Error(data);
                 }
-                prdCtx.database_handler(obj.identity, data._id)
+                prdCtx.database_handler(obj.identity, data._id);
                 dispatchCartItems({ type: "add", product: { ...obj, quantity: 1, database_id: data._id } })
             }
             catch (err) {
                 console.log(err);
             }
         }
+        setFetching(false);
     }
 
     const removeItem_handler = async (obj) => {
@@ -208,7 +212,8 @@ export default function CartProvider(props) {
             items: cartItems.products,
             addItem: addItem_handler,
             removeItem: removeItem_handler,
-            totalQuantity: cartItems.totalQuantity
+            totalQuantity: cartItems.totalQuantity,
+            fetching: fetching
         }}>
             {props.children}
         </CartContext.Provider>

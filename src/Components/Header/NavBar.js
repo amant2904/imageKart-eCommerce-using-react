@@ -2,18 +2,20 @@ import React, { useContext } from 'react'
 import { Button, Container, Navbar, Nav } from 'react-bootstrap'
 import CartContext from '../Store/cart-context'
 import classes from "./NavBar.module.css"
-import { Link, useLocation } from 'react-router-dom'
+import { Link, useLocation, useHistory } from 'react-router-dom'
 import AuthContext from '../Store/auth-context'
 
 export default function NavBar(props) {
     const cartCtx = useContext(CartContext);
     const authCtx = useContext(AuthContext);
     const location = useLocation();
+    const history = useHistory();
 
     const loggedIn = authCtx.isLoggedIn;
 
     const logout_handler = () => {
         authCtx.logout_handler();
+        history.replace("/auth");
     }
 
     return (
