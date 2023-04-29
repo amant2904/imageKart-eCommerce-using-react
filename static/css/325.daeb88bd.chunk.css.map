@@ -1,0 +1,1 @@
+{"version":3,"file":"static/css/325.daeb88bd.chunk.css","mappings":"AAAA,0BACI,eAAgB,CAEhB,QAAW,CADX,cAEJ","sources":["Components/Pages/About.module.css"],"sourcesContent":[".header_text{\r\n    font-size: 100px;\r\n    padding: 30px 0px;\r\n    margin: 0px;\r\n}"],"names":[],"sourceRoot":""}
